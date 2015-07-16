@@ -7,11 +7,12 @@
 @import 'modules/_palette';
 @import 'modules/_grid-system';
 @import 'modules/_breakpoints';
+@import 'modules/_colors';
+
 
 // Optional side margins
 @import 'modules/_mq';
 @import 'modules/_side-margins';
-@import 'modules/_colors.scss'
 
 // Setup page
 body {
@@ -65,7 +66,7 @@ body {
 }
 
 .sub-summary {
-    @include fs-bodyCopy(3);
+    @include fs-bodyCopy(2);
 
     @include mq(tablet) {
         width: 100%;
@@ -73,17 +74,35 @@ body {
     }
 
     @include mq(desktop) {
-        width: gs-span(6);
+        width: gs-span(9);
         margin-left:0;
     }
 
     @include mq(leftCol) {
-        width: gs-span(5);
+        width: gs-span(8);
         margin-left:10rem;
     }
     @include mq(wide) {
-        width: gs-span(5);
+        width: gs-span(8);
         margin-left:15rem;
+    }
+}
+
+#chart-key {
+     ul {
+        margin:0;
+        padding:0;
+        margin-top:10px;
+        height: 30px;
+        display: block;
+    }
+
+    li {
+        @include fs-textSans(2);
+        float:left;
+        list-style: none;
+        padding-right: 15px;
+        margin-bottom:5px;
     }
 }
 
@@ -95,6 +114,8 @@ body {
     display: inline-block;
     vertical-align: middle;
     margin-bottom: 2px;
+
+   
 }
 
 #key-af{background-color:$africa;}
@@ -106,7 +127,6 @@ body {
 
 
 @import 'modules/_common';
-@import 'modules/_colors';
 //@import 'modules/_buttons';
 
 //@import 'modules/_page';
