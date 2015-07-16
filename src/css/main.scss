@@ -11,6 +11,7 @@
 // Optional side margins
 @import 'modules/_mq';
 @import 'modules/_side-margins';
+@import 'modules/_colors.scss'
 
 // Setup page
 body {
@@ -62,6 +63,47 @@ body {
     max-width: 500px;
     @include fs-textSans(3);
 }
+
+.sub-summary {
+    @include fs-bodyCopy(3);
+
+    @include mq(tablet) {
+        width: 100%;
+        margin-left:0;
+    }
+
+    @include mq(desktop) {
+        width: gs-span(6);
+        margin-left:0;
+    }
+
+    @include mq(leftCol) {
+        width: gs-span(5);
+        margin-left:10rem;
+    }
+    @include mq(wide) {
+        width: gs-span(5);
+        margin-left:15rem;
+    }
+}
+
+.key {
+    width: 10px;
+    height: 10px;
+    margin-right: 3px;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 2px;
+}
+
+#key-af{background-color:$africa;}
+#key-as{background-color:$asia;}
+#key-na{background-color:$namerica;}
+#key-la{background-color:$samerica;}
+#key-au{background-color:$oceania;}
+#key-eu{background-color:$europe;}
+
 
 @import 'modules/_common';
 @import 'modules/_colors';
