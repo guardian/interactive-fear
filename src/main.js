@@ -15,7 +15,17 @@ var region_codes={
 }
 var sub_region_codes={
 	"021":"namerica",
-	"005":"samerica"
+	"005":"samerica",
+	"013":"samerica"
+}
+var headers={
+	"climate":"Global climate<br/>change",
+	"economy":"Global economic<br/>instability",
+	"isis":"<br/>ISIS",
+	"iran":"Iran's<br/>nuclear program",
+	"cyber":"<br/>Cyber-attacks",
+	"russia":"Tensions<br/>with Russia",
+	"china":"Territorial disputes<br/>with China"
 }
 d3.json("data/iso.json",function(iso){
 	var codes={};
@@ -36,27 +46,39 @@ d3.json("data/iso.json",function(iso){
 			}
 
 		})
-
+		/*
 		var v=d3.values(obj).filter(function(d){
 			return typeof d != "string"
 		});
 		//console.log(v)
 		obj.mean=d3.mean(v);
+		*/
+		obj["head-climate"]=obj["climate"];
+		obj["head-isis"]=obj["isis"];
+		obj["head-cyber"]=obj["cyber"];
+		obj["head-china"]=obj["china"];
+		obj["head-economy"]=obj["economy"];
+		obj["head-iran"]=obj["iran"];
+		obj["head-russia"]=obj["russia"];
+		
 		return obj;
 
 	},function(data){
 		//console.log(data)
 
-		
 
-		new ParallelTable(data,{
+		var parallels=new ParallelTable(data,{
 			container:"#fears",
-			indicators:["mean","climate","economy","isis","iran","cyber","russia","china"],
+			indicators:["head-climate","climate","head-economy","economy","head-isis","isis","head-iran","iran","head-cyber","cyber","head-russia","russia","head-china","china"],
+			headers:headers,
 			codes:codes,
 			region_codes:region_codes,
 			sub_region_codes:sub_region_codes
 		})
 
+		window.onresize=function(){
+			parallels.update();
+		}
 	})
 
 })
