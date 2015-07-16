@@ -7,6 +7,8 @@
 @import 'modules/_palette';
 @import 'modules/_grid-system';
 @import 'modules/_breakpoints';
+@import 'modules/_colors';
+
 
 // Optional side margins
 @import 'modules/_mq';
@@ -63,8 +65,68 @@ body {
     @include fs-textSans(3);
 }
 
+.sub-summary {
+    @include fs-bodyCopy(2);
+
+    @include mq(tablet) {
+        width: 100%;
+        margin-left:0;
+    }
+
+    @include mq(desktop) {
+        width: gs-span(9);
+        margin-left:0;
+    }
+
+    @include mq(leftCol) {
+        width: gs-span(8);
+        margin-left:10rem;
+    }
+    @include mq(wide) {
+        width: gs-span(8);
+        margin-left:15rem;
+    }
+}
+
+#chart-key {
+     ul {
+        margin:0;
+        padding:0;
+        margin-top:10px;
+        height: 30px;
+        display: block;
+    }
+
+    li {
+        @include fs-textSans(2);
+        float:left;
+        list-style: none;
+        padding-right: 15px;
+        margin-bottom:5px;
+    }
+}
+
+.key {
+    width: 10px;
+    height: 10px;
+    margin-right: 3px;
+    border-radius: 2px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 2px;
+
+   
+}
+
+#key-af{background-color:$africa;}
+#key-as{background-color:$asia;}
+#key-na{background-color:$namerica;}
+#key-la{background-color:$samerica;}
+#key-au{background-color:$oceania;}
+#key-eu{background-color:$europe;}
+
+
 @import 'modules/_common';
-@import 'modules/_colors';
 //@import 'modules/_buttons';
 
 //@import 'modules/_page';
