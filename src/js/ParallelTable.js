@@ -90,7 +90,7 @@ function ParallelTable(data,options) {
 							return d.key.indexOf("head")<0;
 						})
 						.html(function(d){
-							return options.headers[d.key];
+							return "<span>"+options.headers[d.key]+"</span>";
 						})
 
 
