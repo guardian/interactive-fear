@@ -1,24 +1,60 @@
 .parallel-table {
+	overflow:hidden;
 	width:100%;
-	padding:20px;
+	margin:20px 0px;
+	position: relative;
+
+	
+	.column.country-names {
+		width:75px;
+		min-width: 75px;
+		z-index:999;
+
+		.cell.country {
+			span {
+				display: inline-block;
+				width: 100%;
+			}
+		}
+	}
+
+	@include mq(tablet) {
+		margin:20px;
+
+		.column.country-names {
+			display: none;
+		}
+		.column.country-names:first-child {
+			display: block;
+		}
+	}
 
 	.column {
 		float:left;
-		width:calc(100% / 8);
+		//width:calc((100% - 75px) / 7 - 3%);
+		width:calc((100% - (75px * 2)) / 2 - (15px * 2));
+		margin:0 5px;
 		
+		@include mq(tablet) {
+			width:calc((100% - 75px) / 7 - 15px);
+		}
+
 		.header {
-			height: 20px;
-			line-height: 20px;
-			padding-left:30px;
-			font-weight: bold;
+			min-height: 60px;
+			
+			
 			text-align: center;
+			margin-bottom:5px;
+
+			@include fs-header(1);
+			
 		}
 		.cell {
-			height: 20px;
-			line-height: 20px;
+			height: 15px;
+			line-height: 15px;
 
 			@include fs-textSans(1);
-			
+			font-size:12px;
 			
 
 			span {
@@ -26,17 +62,18 @@
 			}
 
 			.country {
-				width:30px;
+				//width:30px;
+				text-align:right;
 			}
 			.value {
-				width:calc(100% - 30px);
+				width:calc(100%);
 				position: relative;
 				
 				text-align: center;
 				div.bar {
 					position:absolute;
-					top:0;
-					bottom:0;
+					top: 2px;
+  					bottom: 2px;
 					background-color: #ddd;
 					z-index: -1;
 					opacity: 0.6;
@@ -81,14 +118,52 @@
 			
 		}
 		.cell.opaque {
-			opacity: 0.5;
+			opacity: 0.4;
 			.bar {
-				background-color:#ddd !important
+				//background-color:#ddd !important
 			}
 		}
 		.cell.highlight {
 			b {
 				display: inline;
+			}
+		}
+		.cell.country.highlight {
+			span {
+				font-weight:bold;
+			}
+		}
+	}
+	
+	div.connections {
+
+		display: none;
+
+		@include mq(tablet) {
+			display: block;
+		}
+	
+		position: absolute;
+		top:0;
+		left:0;
+		right:0;
+		bottom:0;
+		z-index: -1;
+
+		svg {
+			width:100%;
+			height:100%;
+
+			line {
+				stroke:#333;
+				stroke-width:1.5;
+				stroke-opacity:0.1;
+			}
+			line.highlight {
+				stroke-opacity:0.8;
+			}
+			line.opaque {
+				stroke-opacity:0.05;
 			}
 		}
 	}
