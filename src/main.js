@@ -13,6 +13,10 @@ var region_codes={
 	"150":"europe",
 	"009":"oceania"
 }
+var sub_region_codes={
+	"021":"namerica",
+	"005":"samerica"
+}
 d3.json("data/iso.json",function(iso){
 	var codes={};
 	//console.log(iso)
@@ -49,7 +53,8 @@ d3.json("data/iso.json",function(iso){
 			container:"#fears",
 			indicators:["mean","climate","economy","isis","iran","cyber","russia","china"],
 			codes:codes,
-			region_codes:region_codes
+			region_codes:region_codes,
+			sub_region_codes:sub_region_codes
 		})
 
 	})

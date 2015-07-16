@@ -105,7 +105,9 @@ function ParallelTable(data,options) {
 			
 	value.append("div")
 			.attr("class",function(d){
-				//console.log(d.country,options.codes[d.country]["region-code"])
+				if(options.sub_region_codes[options.codes[d.country]["sub-region-code"]]) {
+					return "bar "+options.sub_region_codes[options.codes[d.country]["sub-region-code"]];
+				}
 				return "bar "+options.region_codes[options.codes[d.country]["region-code"]];
 			})
 			.style("width",function(d){
