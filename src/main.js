@@ -6,6 +6,8 @@ var el = window.gv_el || document.querySelector('.interactive');
 //d3.select(el).html(base); //d3 way.....
 el.innerHTML=base;
 
+console.log("v. 0.4")
+
 var region_codes={
 	"002":"africa",
 	"019":"americas",
@@ -27,11 +29,11 @@ var headers={
 	"russia":"Tensions<br/>with Russia",
 	"china":"Territorial disputes<br/>with China"
 }
-d3.json("data/iso.json",function(iso){
+d3.json("https://visuals.guim.co.uk/2015/jul/what-is-the-world-scared-of/data/iso.json",function(iso){
 	var codes={};
 	//console.log(iso)
 	
-	d3.csv("data/data.csv",function(d){
+	d3.csv("https://visuals.guim.co.uk/2015/jul/what-is-the-world-scared-of/data/data.csv",function(d){
 		var obj={
 			country:d.country,
 		}

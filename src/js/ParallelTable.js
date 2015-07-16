@@ -1,6 +1,6 @@
 function ParallelTable(data,options) {
 
-	console.log("ParallelTable",data)
+	//console.log("ParallelTable",data)
 
 	var dataByIndicator={};
 	var positions=[];
@@ -8,7 +8,7 @@ function ParallelTable(data,options) {
 	options.indicators.forEach(function(indicator){
 		dataByIndicator[indicator]=[];
 	});
-	console.log(dataByIndicator)
+	//console.log(dataByIndicator)
 	function updateData() {
 
 		data.forEach(function(d){
@@ -29,7 +29,7 @@ function ParallelTable(data,options) {
 		})
 
 		data.forEach(function(d){
-			//console.log(d)
+			////console.log(d)
 			var inds=d3.entries(d).filter(function(i){
 				return i.key!="country" && i.key.indexOf("head")<0
 			}).map(function(c){
@@ -44,17 +44,17 @@ function ParallelTable(data,options) {
 				country:d.country,
 				values:inds
 			})
-			//console.log(inds)
+			////console.log(inds)
 		})
 
 	}
 
 	updateData();
 
-	console.log("POSITIONS",positions)
+	//console.log("POSITIONS",positions)
 
 	
-	console.log(dataByIndicator)
+	//console.log(dataByIndicator)
 
 	
 	var WIDTH=1000,
@@ -62,8 +62,11 @@ function ParallelTable(data,options) {
 
 	var table=d3.select(options.container)
 					.append("div")
-					.attr("class","parallel-table")
+					.attr("class","parallel-table clearfix")
 
+	var svg=table.append("div")
+			.attr("class","connections")
+			.append("svg");
 
 	var column=table.selectAll("div.column")
 			.data(options.indicators.map(function(d){
@@ -133,47 +136,44 @@ function ParallelTable(data,options) {
 					
 
 	function highlightCountry(c) {
-		//console.log(country)
+		////console.log(country)
+		table
+			.classed("opaque",false)
+		
 		cell
-			.classed("opaque",false)
 			.classed("highlight",false)
 
+		//country
+		//	.classed("opaque",false)
 		country
-			.classed("opaque",false)
 			.classed("highlight",false)
 
-		connections.selectAll("line").classed("opaque",false).classed("highlight",false)
+		connections.selectAll("line").classed("highlight",false)
 
 		if(!c) {
 			return;
 		}
-		cell
+		/*cell
 				.filter(function(d){
 					return d.country != c
 				})
-				.classed("opaque",true)
+				.classed("opaque",true)*/
+		table
+			.classed("opaque",true)
+		
 		cell
 				.filter(function(d){
 					return d.country == c
 				})
 				.classed("highlight",true)
-
-		country
-				.filter(function(d){
-					return d.country != c
-				})
-				.classed("opaque",true)
+		
 		country
 				.filter(function(d){
 					return d.country == c
 				})
 				.classed("highlight",true)
 
-		connections.selectAll("line")
-				.filter(function(d){
-					return d.country != c
-				})
-				.classed("opaque",true)
+
 
 		connections.selectAll("line")
 			.filter(function(d){
@@ -219,9 +219,7 @@ function ParallelTable(data,options) {
 
 
 
-	var svg=table.append("div")
-			.attr("class","connections")
-			.append("svg");
+	
 
 	var connections=svg.selectAll("g.country")
 			.data(positions)
@@ -233,7 +231,7 @@ function ParallelTable(data,options) {
 				})
 
 	var size=table.select("div.column[rel=climate]").node().getBoundingClientRect();
-	console.log(size);
+	//console.log(size);
 	var column_width=size.width;
 
 	connections.selectAll("line")
@@ -244,7 +242,7 @@ function ParallelTable(data,options) {
 						c.next_indicator=d.values[i+1]
 						return c;
 					});
-					//console.log("VALUES",values)
+					////console.log("VALUES",values)
 					return values;
 				})
 				.enter()
@@ -270,7 +268,7 @@ function ParallelTable(data,options) {
 	}
 	function update() {
 		size=table.select("div.column[rel=climate]").node().getBoundingClientRect();
-		console.log(size);
+		//console.log(size);
 		column_width=size.width;
 
 		connections.selectAll("line")
